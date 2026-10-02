@@ -1,0 +1,42 @@
+# Opens the weekly changelog PR as github-actions[bot] when a changelog/** branch is pushed.
+# auto-publish.yml merges it 24 hours later unless someone closes it first.
+name: Open changelog PR
+
+on:
+  push:
+    branches:
+      - 'changelog/**'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: open-changelog-pr-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  open-pr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Open the PR into main (once per branch)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          date="${BRANCH#changelog/}"
+          # Any PR for this branch, open or closed: a closed one means it was cancelled, so do not reopen it.
+          existing="$(gh pr list --repo "$REPO" --head "$BRANCH" --state all --json number --jq 'length')"
+          if [ "$existing" != "0" ]; then
+            echo "A PR for $BRANCH already exists; nothing to do."
+            exit 0
+          fi
+          gh pr create --repo "$REPO" \
+            --base main \
+            --head "$BRANCH" \
+            --title "Changelog: $date" \
+            --label auto-publish \
+            --body "Publishes automatically 24 hours after this PR opened. Close it to cancel."

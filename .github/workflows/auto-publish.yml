@@ -1,0 +1,46 @@
+# Squash-merges changelog PRs labelled auto-publish once they have been open for 24 hours.
+# Closing the PR before then cancels the publish. Stops doing anything after 2026-12-08.
+name: Auto-publish changelog
+
+on:
+  schedule:
+    - cron: '17 */3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: auto-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Merge auto-publish PRs older than 24 hours
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          today="$(date -u +%Y-%m-%d)"
+          if [[ "$today" > "2026-12-08" ]]; then
+            echo "Auto-publish window ended on 2026-12-08; nothing to do."
+            exit 0
+          fi
+          cutoff="$(date -u -d '24 hours ago' +%s)"
+          # Only same-repo changelog/** branches opened by github-actions[bot] are eligible.
+          gh pr list --repo "$REPO" --state open --label auto-publish --base main --limit 50 \
+            --json number,createdAt,headRefName,isCrossRepository,author \
+            --jq '.[] | select(.isCrossRepository == false) | select(.headRefName | startswith("changelog/")) | select(.author.login == "app/github-actions" or .author.login == "github-actions") | "\(.number) \(.createdAt)"' \
+          | while read -r number created; do
+              if [ "$(date -u -d "$created" +%s)" -le "$cutoff" ]; then
+                echo "Merging #$number (opened $created)"
+                gh pr merge "$number" --repo "$REPO" --squash --delete-branch
+              else
+                echo "#$number opened $created; not 24 hours yet"
+              fi
+            done
