@@ -17,7 +17,7 @@ Website: [duesback.com](https://duesback.com) · Contact: hello@duesback.com
 |---|---|
 | [docs/connect-muse.md](docs/connect-muse.md) | Setting up Duesback in Muse, what Muse asks before it acts, fees, stopping |
 | [docs/connect-other-clients.md](docs/connect-other-clients.md) | MCP endpoint, OAuth 2.1 (code + PKCE, device flow), REST and OpenAPI |
-| [docs/tools.md](docs/tools.md) | The MCP tools and when an agent should call each one |
+| [docs/tools.md](docs/tools.md) | The MCP tools, when an agent should call each one, and read-only connections. Full reference: [duesback.com/tools](https://duesback.com/tools) |
 | [examples/prompts.md](examples/prompts.md) | Things to say to Muse once Duesback is connected |
 | [examples/demo-data.md](examples/demo-data.md) | A public demo dataset for trying an audit without real bank data |
 | [llms.txt](llms.txt) | Copy of [duesback.com/llms.txt](https://duesback.com/llms.txt), the instructions agents read. The live file wins if they differ. |
@@ -26,7 +26,7 @@ Website: [duesback.com](https://duesback.com) · Contact: hello@duesback.com
 ## How it works
 
 1. **Audit.** Muse sends up to 12 months of transactions. Duesback finds recurring charges, classifies them (subscription, telecom/internet/TV bill, bank fee, unknown "gray" charge) and returns findings ranked by savings.
-2. **Act.** Each finding carries a playbook: cancel, call for a retention rate, or request a fee refund. Muse asks the user before every cancellation, call or payment.
+2. **Act.** Each finding carries a playbook: cancel, call for a retention rate, or request a fee refund. Muse asks the user before every cancellation, call or payment, and quotes the exact fee before reporting a win. Users who only want the audit can connect read-only, which never creates a fee.
 3. **Verify.** Muse reports the outcome with evidence. Duesback checks it against later transactions. If the saving doesn't stick within 90 days, the fee is refunded.
 
 ## Fees

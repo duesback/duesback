@@ -16,7 +16,9 @@ Duesback is built for Meta's Muse, but the server speaks standard protocols. Any
 
 Agents should never ask the user for a key, token or password.
 
-**Hosts with a browser callback:** OAuth 2.1 authorization code with PKCE. Dynamic client registration and client-ID metadata documents are supported. One scope: `duesback`.
+**Hosts with a browser callback:** OAuth 2.1 authorization code with PKCE. Dynamic client registration and client-ID metadata documents are supported.
+
+**Scopes:** `duesback` (full access) or `duesback.read` (read-only: audit, findings, playbooks, fee quotes and status; never creates a fee). The sign-in page also lets the user choose read-only, so a client asking for `duesback` may receive `duesback.read`. See [tools.md](tools.md#read-only-connections).
 
 **Agents without a callback** (for example a custom connector written inside an agent's sandbox): the OAuth device flow.
 
@@ -35,10 +37,11 @@ A key from [duesback.com/start](https://duesback.com/start) works as a bearer to
 | POST | `/v1/audit` | Audit transactions, return findings |
 | GET | `/v1/findings` | Open findings, best savings first |
 | GET | `/v1/findings/{finding_id}/playbook` | Provider notes for one finding |
-| POST | `/v1/outcomes` | Report what happened after acting |
+| GET | `/v1/findings/{finding_id}/quote` | The exact fee a report would create (no side effects) |
+| POST | `/v1/outcomes` | Report what happened after acting (creates the fee; one per finding) |
 | POST | `/v1/outcomes/{outcome_id}/verify` | Check one outcome against fresh data |
 | GET | `/v1/fees` | Fees due and their payment links |
 | GET | `/v1/account` | Account status |
 | POST | `/v1/disconnect` | Revoke access and delete stored data |
 
-The MCP tools map to the same operations. See [tools.md](tools.md).
+The MCP tools map to the same operations. See [tools.md](tools.md), and [duesback.com/tools](https://duesback.com/tools) for side effects, errors and limits.

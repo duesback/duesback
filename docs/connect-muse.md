@@ -20,7 +20,7 @@ If Muse hesitates, give it the long version:
 
 > Connect Duesback as a custom connector. Read https://duesback.com/llms.txt and follow its device-flow sign-in: register, get a code, open the link for me, then poll for the token. Never ask me for a key or token.
 
-Muse opens duesback.com/connect with a short code already filled in. Sign in with your email (or Google) and go back to Muse; it finishes the connection on its own. If your email already has a Duesback account, we send a 6-digit code to confirm it's you.
+Muse opens duesback.com/connect with a short code already filled in. Sign in with your email (or Google) and go back to Muse; it finishes the connection on its own. Tick **Read-only** on that page if you want Duesback to find and explain only, never to create a fee; you can reconnect with full access later. If your email already has a Duesback account, we send a 6-digit code to confirm it's you.
 
 ## 2. Allow access
 
@@ -44,7 +44,7 @@ Before Muse cancels a subscription, agrees to a new rate, or calls a provider, i
 ## 5. Fees
 
 - 30% of the first-year saving when a bill is lowered, downgraded or cancelled. 25% of a refund. Minimum $1. Nothing when nothing was won.
-- The fee is created when Muse reports the win with evidence. You get 48 hours to object, then a one-time Stripe payment link that Muse opens for you and you approve. Fees above $100 come in installments.
+- Before reporting a win, Muse tells you the exact fee and asks for your yes. The fee is created when Muse reports the win with evidence, and each finding can create at most one fee. You get 48 hours to object, then a one-time Stripe payment link that Muse opens for you and you approve. Fees above $100 come in installments.
 - If your later bank data shows the saving didn't stick within 90 days, the fee is refunded in full.
 - Optional autopay: after your first paid fee, Muse can save a card so later fees are charged automatically after the 48-hour window. "Disable autopay" removes it.
 
@@ -54,4 +54,4 @@ Full rules at [duesback.com/fees](https://duesback.com/fees).
 
 Say "Duesback, disconnect." Your access is revoked and your stored signatures and findings are deleted. Fees already created remain due.
 
-Questions: hello@duesback.com
+Questions: hello@duesback.com · Tool documentation: [duesback.com/tools](https://duesback.com/tools)
