@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-06
+
+- **Read-only mode.** Tick Read-only when you connect to have Duesback find and explain overcharges without creating any fees. You can reconnect with full access later.
+- **Documentation for developers.** Tool descriptions, side effects, error codes and limits are now public at duesback.com/tools for anyone building with the Model Context Protocol.
+- **About and Security pages.** Learn how Duesback works, what it costs, and how your data is handled.
+
 ## 2026-09-30
 
 - Every MCP tool now declares whether it only reads, changes something, or can't be undone, so hosts like Muse know which calls need your confirmation.
