@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-19
+
+- **Dental denial recovery.** Duesback now audits dental claims. Use the Free Denial X-Ray form to submit a claim summary, and Duesback will draft a local appeal if a denial is found.
+- **Safer app connections.** The consent page now names where your authorization will be sent and warns if the destination is unverified. Unverified apps have read-only access preselected.
+
 ## 2026-10-06
 
 - **Read-only mode.** Tick Read-only when you connect to have Duesback find and explain overcharges without creating any fees. You can reconnect with full access later.
