@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-26
+
+- **Dental appeal drafts.** The Free Denial X-Ray form now includes X-Ray confirmation and draft emails to help you appeal a dental claim denial to your insurance company.
+
 ## 2026-10-19
 
 - **Dental denial recovery.** Duesback now audits dental claims. Use the Free Denial X-Ray form to submit a claim summary, and Duesback will draft a local appeal if a denial is found.
