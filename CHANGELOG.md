@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-09
+
+- **Dental appeals in Spanish.** The Free Denial X-Ray form, confirmation email, and X-Ray drafts are now available in Spanish at duesback.com/dental/es.
+- **Muse integration.** Duesback now appears in Meta's Muse with three starting prompts (Save me money, Lower my internet or phone bill, Check my bills every week) and two resources (fee rules and tool catalog) that Muse can show before making any call.
+
 ## 2026-10-26
 
 - **Dental appeal drafts.** The Free Denial X-Ray form now includes X-Ray confirmation and draft emails to help you appeal a dental claim denial to your insurance company.
